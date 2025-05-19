@@ -403,7 +403,7 @@
 document.addEventListener('keydown', function(event) {
 	if (event.key.toLowerCase() === 'e') {
 		// Replace with the URL you want to redirect to
-		const targetURL = 'https://example.com';
+		const targetURL = 'https://knoxi.au';
 
 		// Redirect current tab
 		window.location.href = targetURL;
