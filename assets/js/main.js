@@ -6,6 +6,12 @@
 
 (function($) {
 
+	document.addEventListener('keydown', function(event) {
+		if (event.key === 'e') { // Replace 'k' with the desired key
+	    		window.close();
+		}
+	});
+
 	var	$window = $(window),
 		$body = $('body'),
 		$wrapper = $('#wrapper'),
