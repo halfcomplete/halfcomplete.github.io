@@ -65,16 +65,36 @@
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							
 								<h3>Play PolyTrack</h3>
-								<div style="position: relative; width: 100%; padding-top: 56.25%; margin-bottom: 1em;">
+								<div id="polytrack-container" style="position: relative; width: 100%; padding-top: 56.25%; margin-bottom: 1em;">
 									<iframe 
+										id="polytrack-iframe"
 										src="https://gnhustgames.github.io/polytrack/" 
 										frameborder="0" 
 										allowfullscreen 
 										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 									</iframe>
 								</div>
-							
-								<p><a href="https://gnhustgames.github.io/polytrack/" target="_blank">Click here</a> to open PolyTrack in a new tab.</p>
+								
+								<!-- Fullscreen Button -->
+								<div style="text-align: center; margin-bottom: 2em;">
+									<button id="fullscreen-btn" class="button primary">Fullscreen</button>
+								</div>
+								
+								<!-- JavaScript -->
+								<script>
+									document.getElementById("fullscreen-btn").addEventListener("click", function () {
+										const container = document.getElementById("polytrack-container");
+								
+										if (container.requestFullscreen) {
+											container.requestFullscreen();
+										} else if (container.webkitRequestFullscreen) { /* Safari */
+											container.webkitRequestFullscreen();
+										} else if (container.msRequestFullscreen) { /* IE11 */
+											container.msRequestFullscreen();
+										}
+									});
+								</script>
+
 							</article>
 
 						<!-- Contact -->
