@@ -77,12 +77,43 @@
 								
 								<!-- Fullscreen Button -->
 								<div style="text-align: center; margin-bottom: 2em;">
-									<button id="fullscreen-btn" class="button primary">Fullscreen</button>
+									<button id="fullscreen-polytrack-btn" class="button primary">Fullscreen</button>
 								</div>
 								
 								<!-- JavaScript -->
 								<script>
-									document.getElementById("fullscreen-btn").addEventListener("click", function () {
+									document.getElementById("fullscreen-polytrack-btn").addEventListener("click", function () {
+										const container = document.getElementById("polytrack-container");
+								
+										if (container.requestFullscreen) {
+											container.requestFullscreen();
+										} else if (container.webkitRequestFullscreen) { /* Safari */
+											container.webkitRequestFullscreen();
+										} else if (container.msRequestFullscreen) { /* IE11 */
+											container.msRequestFullscreen();
+										}
+									});
+								</script>
+								
+								<h3>Play 10 Minutes Till Dawn</h3>
+								<div id="tenminutes-container" style="position: relative; width: 100%; padding-top: 56.25%; margin-bottom: 1em;">
+									<iframe 
+										id="tenminutes-iframe"
+										src="https://gnhustgames.github.io/10-minutes-till-dawn-online/" 
+										frameborder="0" 
+										allowfullscreen 
+										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+									</iframe>
+								</div>
+								
+								<!-- Fullscreen Button -->
+								<div style="text-align: center; margin-bottom: 2em;">
+									<button id="fullscreen-tenminutes-btn" class="button primary">Fullscreen</button>
+								</div>
+								
+								<!-- JavaScript -->
+								<script>
+									document.getElementById("fullscreen-tenminutes-btn").addEventListener("click", function () {
 										const container = document.getElementById("polytrack-container");
 								
 										if (container.requestFullscreen) {
