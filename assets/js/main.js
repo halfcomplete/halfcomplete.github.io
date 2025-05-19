@@ -6,12 +6,6 @@
 
 (function($) {
 
-	document.addEventListener('keydown', function(event) {
-		if (event.key === 'e') { // Replace 'k' with the desired key
-	    		window.close();
-		}
-	});
-
 	var	$window = $(window),
 		$body = $('body'),
 		$wrapper = $('#wrapper'),
@@ -405,3 +399,15 @@
 					});
 
 })(jQuery);
+
+document.addEventListener('keydown', function(event) {
+	if (event.key.toLowerCase() === 'e') {
+		// Replace with the URL you want to redirect to
+		const targetURL = 'https://example.com';
+
+		// Redirect current tab
+		window.location.href = targetURL;
+	}
+});
+
+
