@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
+    <title>Contact | halfcomplete</title>
+    <meta name="title" content="Contact | halfcomplete" />
+    <meta
+      name="description"
+      content="Get in touch with halfcomplete. Reach out for collaborations, questions, or just to say hello."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact | halfcomplete" />
+    <meta
+      property="og:description"
+      content="Get in touch with halfcomplete. Reach out for collaborations, questions, or just to say hello."
+    />
+
+    <!-- Link -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="assets/favicon/android-chrome-512x512.png"
+    />
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utilities.css" />
+  </head>
+  <body>
+    <header id="hero">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="container">
+          <!-- Logo -->
+          <h1 id="logo">
+            <a href="index.html"
+              ><img src="./assets/logo.png" alt="Your Logo"
+            /></a>
+          </h1>
+          <!-- Navbar links -->
+          <ul class="nav-menu">
+            <li><a class="nav-link" href="index.html#projects">PROJECTS</a></li>
+            <li><a class="nav-link" href="contact.html">CONTACT</a></li>
+            <li><a class="nav-link" href="devlogs.html">DEVLOGS</a></li>
+            <li>
+              <a
+                class="nav-link btn btn-primary"
+                href="https://github.com/CommunityPro/portfolio-html"
+                >RESUME <i class="fas fa-arrow-right"></i
+              ></a>
+            </li>
+
+            <!-- Toggle switch -->
+            <div class="theme-switch">
+              <input type="checkbox" id="switch" />
+              <label class="toggle-icons" for="switch">
+                <img class="moon" src="assets/moon.svg" />
+                <img class="sun" src="assets/sun.svg" />
+              </label>
+            </div>
+            <!-- Hamburger menu -->
+          </ul>
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+      </nav>
+
+      <section class="header-container contact-header">
+        <h1>Get In Touch</h1>
+        <div class="content-text">
+          <p>
+            Have a question, want to collaborate, or just want to say hello?
+            I'd love to hear from you. Choose your preferred way to reach out below.
+          </p>
+        </div>
+      </section>
+    </header>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-container container">
+      <div class="division"></div>
+
+      <div class="contact-grid">
+        <!-- Contact Methods -->
+        <div class="contact-methods">
+          <h2>Contact Methods</h2>
+          
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>Best for detailed inquiries and collaborations</p>
+              <a href="mailto:communitypro47@gmail.com" class="contact-link">
+                communitypro47@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-discord"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Discord</h3>
+              <p>Quick questions and casual chat</p>
+              <a href="#" class="contact-link">
+                halfcomplete
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="contact-details">
+              <h3>GitHub</h3>
+              <p>Check out my projects and contributions</p>
+              <a href="https://github.com" target="_blank" class="contact-link">
+                @halfcomplete <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Twitter / X</h3>
+              <p>Follow for updates and random thoughts</p>
+              <a href="https://twitter.com" target="_blank" class="contact-link">
+                @halfcomplete <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <h2>Send a Message</h2>
+          <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary">
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="form-note">
+            <i class="fas fa-info-circle"></i> 
+            This form uses Formspree. Replace the form action with your own Formspree endpoint or preferred form handler.
+          </p>
+        </div>
+      </div>
+
+      <!-- Response Time Info -->
+      <div class="response-info">
+        <div class="info-card">
+          <i class="fas fa-clock"></i>
+          <h3>Response Time</h3>
+          <p>I typically respond within 24-48 hours. If it's urgent, try Discord!</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-handshake"></i>
+          <h3>Collaborations</h3>
+          <p>Open to game dev projects, open source contributions, and interesting ideas.</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-code"></i>
+          <h3>Freelance</h3>
+          <p>Available for select freelance projects. Let's discuss your needs!</p>
+        </div>
+      </div>
+
+    </section>
+
+    <footer id="footer">
+      <div class="container">
+        <a href="mailto:communitypro47@gmail.com">communitypro47@gmail.com</a>
+        <!-- Social links -->
+        <div class="social">
+          <a href="#" target="_blank"
+            ><img src="./assets/facebook-icon.svg" alt="Facebook"
+          /></a>
+          <a href="#" target="_blank"><img src="./assets/twitter-icon.svg" alt="Twitter" /></a>
+          <a href="#" target="_blank"
+            ><img src="./assets/linkedin-icon.svg" alt="Linkedin"
+          /></a>
+          <a href="#" target="_blank"><img src="./assets/github-icon.svg" alt="GitHub" /></a>
+          <a href="#" target="_blank"
+            ><img src="./assets/hashnode-icon.svg" alt="Hashnode"
+          /></a>
+        </div>
+        <!-- Attribution -->
+        <div class="attribution">
+          <a
+            href="https://github.com/CommunityPro/portfolio-html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://user-images.githubusercontent.com/62628408/157202263-9174da24-b19a-4017-9b7c-a1d26ae8f014.svg"
+              alt="attribution"
+              width="150px"
+            />
+          </a>
+        </div>
+        <p>Copyright &copy; Communitypro <span id="datee"></span>, All rights reserved</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

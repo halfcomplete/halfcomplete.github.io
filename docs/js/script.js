@@ -64,4 +64,82 @@ if (currentTheme) {
 let myDate = document.querySelector("#datee");
 
 const yes = new Date().getFullYear();
-myDate.innerHTML = yes;
+if (myDate) {
+  myDate.innerHTML = yes;
+}
+
+// ================================
+// Devlog Search, Filter, and Sort
+// ================================
+
+const devlogList = document.getElementById('devlog-list');
+const searchInput = document.getElementById('devlog-search-input');
+const tagFilter = document.getElementById('tag-filter');
+const sortSelect = document.getElementById('sort-select');
+const noResults = document.getElementById('no-results');
+
+if (devlogList && searchInput && tagFilter && sortSelect) {
+  const devlogCards = Array.from(devlogList.querySelectorAll('.devlog-card'));
+
+  function filterAndSortDevlogs() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const selectedTag = tagFilter.value;
+    const sortOption = sortSelect.value;
+
+    // Filter cards
+    let visibleCards = devlogCards.filter(card => {
+      const title = card.dataset.title.toLowerCase();
+      const tag = card.dataset.tag;
+      const excerpt = card.querySelector('.devlog-excerpt').textContent.toLowerCase();
+
+      const matchesSearch = searchTerm === '' || 
+        title.includes(searchTerm) || 
+        excerpt.includes(searchTerm);
+      const matchesTag = selectedTag === 'all' || tag === selectedTag;
+
+      return matchesSearch && matchesTag;
+    });
+
+    // Sort cards
+    visibleCards.sort((a, b) => {
+      if (sortOption === 'newest') {
+        return new Date(b.dataset.date) - new Date(a.dataset.date);
+      } else if (sortOption === 'oldest') {
+        return new Date(a.dataset.date) - new Date(b.dataset.date);
+      } else if (sortOption === 'alphabetical') {
+        return a.dataset.title.localeCompare(b.dataset.title);
+      }
+      return 0;
+    });
+
+    // Update visibility and order
+    devlogCards.forEach(card => {
+      card.classList.add('hidden');
+    });
+
+    visibleCards.forEach((card, index) => {
+      card.classList.remove('hidden');
+      card.style.order = index;
+      // Reset animation
+      card.style.animation = 'none';
+      card.offsetHeight; // Trigger reflow
+      card.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+    });
+
+    // Show/hide no results message
+    if (visibleCards.length === 0) {
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+  }
+
+  // Add event listeners
+  searchInput.addEventListener('input', filterAndSortDevlogs);
+  tagFilter.addEventListener('change', filterAndSortDevlogs);
+  sortSelect.addEventListener('change', filterAndSortDevlogs);
+
+  // Set devlog-list to use flexbox for ordering
+  devlogList.style.display = 'flex';
+  devlogList.style.flexDirection = 'column';
+}

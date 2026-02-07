@@ -75,7 +75,7 @@
           <!-- Navbar links -->
           <ul class="nav-menu">
             <li><a class="nav-link" href="index.html#projects">PROJECTS</a></li>
-            <li><a class="nav-link" href="#">CONTACT</a></li>
+            <li><a class="nav-link" href="contact.html">CONTACT</a></li>
             <li><a class="nav-link" href="devlogs.html">DEVLOGS</a></li>
             <li>
               <a
@@ -118,43 +118,73 @@
     <section id="devlogs" class="devlogs-container container">
       <div class="division"></div>
 
-      <!-- Devlog Entry 1 -->
-      <article class="devlog-card">
-        <div class="devlog-meta">
-          <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 7, 2026</span>
-          <span class="devlog-tag">Ashborne</span>
+      <!-- Search, Filter, Sort Controls -->
+      <div class="devlog-controls">
+        <div class="devlog-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="devlog-search-input" placeholder="Search devlogs..." />
         </div>
-        <h2 class="devlog-title">
-          <a href="devlogs/devlog-001.html">Getting Started with Ashborne - Setting Up the Foundation</a>
-        </h2>
-        <p class="devlog-excerpt">
-          Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup,
-          the tech stack decisions, and the core architecture that will power this interactive narrative experience.
-        </p>
-        <a href="devlogs/devlog-001.html" class="devlog-read-more">
-          Read More <i class="fas fa-arrow-right"></i>
-        </a>
-      </article>
-
-      <!-- Devlog Entry 2 (Example placeholder) -->
-      <article class="devlog-card">
-        <div class="devlog-meta">
-          <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 1, 2026</span>
-          <span class="devlog-tag">General</span>
+        <div class="devlog-filters">
+          <div class="filter-group">
+            <label for="tag-filter">Filter by tag:</label>
+            <select id="tag-filter">
+              <option value="all">All Tags</option>
+              <option value="Ashborne">Ashborne</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="alphabetical">Alphabetical</option>
+            </select>
+          </div>
         </div>
-        <h2 class="devlog-title">
-          <a href="#">Welcome to My Devlog Series</a>
-        </h2>
-        <p class="devlog-excerpt">
-          An introduction to what you can expect from these devlogs. I'll be documenting my journey
-          as a developer, sharing insights, challenges, and victories along the way.
-        </p>
-        <a href="#" class="devlog-read-more">
-          Read More <i class="fas fa-arrow-right"></i>
-        </a>
-      </article>
+      </div>
 
-      <!-- Add more devlog entries here following the same pattern -->
+      <div class="devlog-list" id="devlog-list">
+        <!-- Devlog Entry 1 -->
+        <article class="devlog-card" data-date="2026-02-07" data-tag="Ashborne" data-title="Getting Started with Ashborne - Setting Up the Foundation">
+          <div class="devlog-meta">
+            <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 7, 2026</span>
+            <span class="devlog-tag">Ashborne</span>
+          </div>
+          <h2 class="devlog-title">
+            <a href="devlogs/devlog-001.html">Getting Started with Ashborne - Setting Up the Foundation</a>
+          </h2>
+          <p class="devlog-excerpt">
+            Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup,
+            the tech stack decisions, and the core architecture that will power this interactive narrative experience.
+          </p>
+          <a href="devlogs/devlog-001.html" class="devlog-read-more">
+            Read More <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- Devlog Entry 2 (Example placeholder) -->
+        <article class="devlog-card" data-date="2026-02-01" data-tag="General" data-title="Welcome to My Devlog Series">
+          <div class="devlog-meta">
+            <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 1, 2026</span>
+            <span class="devlog-tag">General</span>
+          </div>
+          <h2 class="devlog-title">
+            <a href="#">Welcome to My Devlog Series</a>
+          </h2>
+          <p class="devlog-excerpt">
+            An introduction to what you can expect from these devlogs. I'll be documenting my journey
+            as a developer, sharing insights, challenges, and victories along the way.
+          </p>
+          <a href="#" class="devlog-read-more">
+            Read More <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- Add more devlog entries here following the same pattern -->
+      </div>
+
+      <p class="no-results" id="no-results" style="display: none;">No devlogs found matching your criteria.</p>
 
     </section>
 
