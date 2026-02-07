@@ -23,14 +23,6 @@ const toggleSwitch = document.querySelector(
   '.theme-switch input[type="checkbox"]'
 );
 
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-}
-
 toggleSwitch.addEventListener("change", switchTheme, false);
 
 //  Store color theme for future visits
@@ -38,10 +30,25 @@ toggleSwitch.addEventListener("change", switchTheme, false);
 function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
+    localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
+    localStorage.setItem("theme", "light");
+  }
+  updateLogo();
+}
+
+// Update logo based on current theme
+function updateLogo() {
+  const logo = document.getElementById("site-logo");
+  if (!logo) return;
+  const isDark =
+    document.documentElement.getAttribute("data-theme") === "dark";
+  const src = logo.getAttribute("src");
+  if (isDark) {
+    logo.src = src.replace(/light\.png$/, "dark.png");
+  } else {
+    logo.src = src.replace(/dark\.png$/, "light.png");
   }
 }
 
@@ -58,6 +65,8 @@ if (currentTheme) {
     toggleSwitch.checked = true;
   }
 }
+
+updateLogo();
 
 // ================================
 // Shared Footer
