@@ -59,14 +59,37 @@ if (currentTheme) {
   }
 }
 
-//Adding date
+// ================================
+// Shared Footer
+// ================================
 
-let myDate = document.querySelector("#datee");
+(function loadSharedFooter() {
+  const footer = document.getElementById("footer");
+  if (!footer) return;
 
-const yes = new Date().getFullYear();
-if (myDate) {
-  myDate.innerHTML = yes;
-}
+  // Determine asset path prefix based on page depth
+  const path = window.location.pathname;
+  const depth = (path.match(/\//g) || []).length;
+  // Pages in subdirectories (e.g. /devlogs/devlog-001.html) need "../"
+  // Root-level pages use "./"
+  const prefix = path.includes("/devlogs/") ? ".." : ".";
+
+  footer.innerHTML = `
+    <div class="container">
+      <a href="mailto:halfcompletecode@gmail.com">halfcompletecode@gmail.com</a>
+      <div class="social">
+        <a href="https://github.com/halfcomplete" target="_blank"><img src="${prefix}/assets/github-icon.svg" alt="GitHub" /></a>
+      </div>
+      <p>Copyright &copy; Eric Hu <span id="datee"></span>, All rights reserved</p>
+    </div>
+  `;
+
+  // Set the year
+  const dateEl = document.getElementById("datee");
+  if (dateEl) {
+    dateEl.innerHTML = new Date().getFullYear();
+  }
+})();
 
 // ================================
 // Devlog Search, Filter, and Sort
