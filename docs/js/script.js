@@ -46,9 +46,9 @@ function updateLogo() {
     document.documentElement.getAttribute("data-theme") === "dark";
   const src = logo.getAttribute("src");
   if (isDark) {
-    logo.src = src.replace(/light\.png$/, "dark.png");
+    logo.src = src.replace(/light\.png/, "dark.png");
   } else {
-    logo.src = src.replace(/dark\.png$/, "light.png");
+    logo.src = src.replace(/dark\.png/, "light.png");
   }
 }
 
