@@ -121,13 +121,13 @@ if (devlogList && searchInput && tagFilter && sortSelect) {
     // Filter cards
     let visibleCards = devlogCards.filter(card => {
       const title = card.dataset.title.toLowerCase();
-      const tag = card.dataset.tag;
+      const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
       const excerpt = card.querySelector('.devlog-excerpt').textContent.toLowerCase();
 
       const matchesSearch = searchTerm === '' || 
         title.includes(searchTerm) || 
         excerpt.includes(searchTerm);
-      const matchesTag = selectedTag === 'all' || tag === selectedTag;
+      const matchesTag = selectedTag === 'all' || tags.includes(selectedTag);
 
       return matchesSearch && matchesTag;
     });

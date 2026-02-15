@@ -16,12 +16,17 @@ const path = require('path');
 const { glob } = require('glob');
 const matter = require('gray-matter');
 const { marked } = require('marked');
+const leven = require('leven').default || require('leven');
+
 
 // Configure marked for GitHub Flavored Markdown
 marked.setOptions({
   gfm: true,
   breaks: true
 });
+
+// Predefined allowed tags
+const ALLOWED_TAGS = ['Ashborne', 'FSE', 'VEX', 'Technical Deep Dive', 'High-level Design', 'Algorithms & Problem Solving', 'Reflection', 'Simulation & Modeling', 'Other'];
 
 // Paths
 const SRC_DEVLOGS = path.join(__dirname, '..', 'docs', 'assets', 'devlogs');
@@ -31,9 +36,13 @@ const DEVLOGS_LISTING = path.join(__dirname, '..', 'docs', 'devlogs.html');
 
 // HTML Template for individual devlog pages
 function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
-  const { slug, title, description, date, tag } = frontmatter;
+  const { slug, title, description, date, tags } = frontmatter;
   const formattedDate = formatDate(date);
   const isoDate = formatISODate(date);
+  
+  // Parse tags (comma and space separated)
+  const tagsArray = parseTags(tags);
+  const tagsHTML = tagsArray.map(t => `<span class="devlog-tag">${escapeHTML(t)}</span>`).join(' ');
   
   // Process markdown content and handle images
   const processedContent = processMarkdownContent(content, slug);
@@ -180,7 +189,7 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
           <i class="fas fa-arrow-left"></i> Back to Devlogs
         </a>
         <div class="devlog-article-meta">
-          <span class="devlog-tag">${escapeHTML(tag)}</span>
+          ${tagsHTML}
           <span class="devlog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
         </div>
         <h1>${escapeHTML(title)}</h1>
@@ -207,15 +216,20 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
 
 // Generate devlog card HTML for listing page
 function generateDevlogCard(frontmatter) {
-  const { slug, title, date, tag, excerpt } = frontmatter;
+  const { slug, title, date, tags, excerpt } = frontmatter;
   const formattedDate = formatDate(date);
   const isoDate = formatISODate(date);
+  
+  // Parse tags (comma and space separated)
+  const tagsArray = parseTags(tags);
+  const tagsDataAttr = tagsArray.join(',');
+  const tagsHTML = tagsArray.map(t => `<span class="devlog-tag">${escapeHTML(t)}</span>`).join(' ');
 
   return `        <!-- Devlog: ${slug} -->
-        <article class="devlog-card" data-date="${isoDate}" data-tag="${escapeHTML(tag)}" data-title="${escapeHTML(title)}">
+        <article class="devlog-card" data-date="${isoDate}" data-tags="${escapeHTML(tagsDataAttr)}" data-title="${escapeHTML(title)}">
           <div class="devlog-meta">
             <span class="devlog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
-            <span class="devlog-tag">${escapeHTML(tag)}</span>
+            ${tagsHTML}
           </div>
           <h2 class="devlog-title">
             <a href="devlogs/${slug}.html">${escapeHTML(title)}</a>
@@ -276,9 +290,10 @@ function updateDevlogsListing(devlogs) {
     .map(d => generateDevlogCard(d.frontmatter))
     .join('\n\n');
   
-  // Collect unique tags
-  const tags = [...new Set(devlogs.map(d => d.frontmatter.tag))].sort();
-  const tagOptionsHTML = tags
+  // Collect unique tags from all devlogs
+  const allTags = devlogs.flatMap(d => parseTags(d.frontmatter.tags));
+  const uniqueTags = [...new Set(allTags)].sort();
+  const tagOptionsHTML = uniqueTags
     .map(tag => `              <option value="${escapeHTML(tag)}">${escapeHTML(tag)}</option>`)
     .join('\n');
   
@@ -327,63 +342,109 @@ function escapeHTML(str) {
     .replace(/"/g, '&quot;');
 }
 
+// Parse comma-separated tags
+function parseTags(tagsStr) {
+  if (!tagsStr) return [];
+  return String(tagsStr).split(', ').map(t => t.trim()).filter(t => t.length > 0);
+}
+
 // Main build function
 async function build() {
   console.log('Building devlogs...\n');
-  
+
   // Ensure output directories exist
   fs.mkdirSync(DOCS_DEVLOGS, { recursive: true });
   fs.mkdirSync(DOCS_ASSETS, { recursive: true });
-  
+
   // Find all markdown files
   const mdFiles = await glob('*.md', { cwd: SRC_DEVLOGS });
-  
+
   if (mdFiles.length === 0) {
     console.log('No markdown files found in src/devlogs/');
     return;
   }
-  
+
+  const devlogs = [];
+  const skippedFiles = [];
+
   // Parse all devlogs
-  const devlogs = mdFiles.map(file => {
-    const filePath = path.join(SRC_DEVLOGS, file);
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const { data: frontmatter, content } = matter(fileContent);
-    
-    // Validate required frontmatter
-    const required = ['slug', 'title', 'description', 'date', 'tag', 'excerpt'];
-    for (const field of required) {
-      if (!frontmatter[field]) {
-        throw new Error(`Missing required frontmatter field '${field}' in ${file}`);
+  for (const file of mdFiles) {
+    try {
+      const filePath = path.join(SRC_DEVLOGS, file);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const { data: frontmatter, content } = matter(fileContent);
+
+      // Validate required frontmatter
+      const required = ['slug', 'title', 'description', 'date', 'tags', 'excerpt'];
+      for (const field of required) {
+        if (!frontmatter[field]) {
+          throw new Error(`Missing required frontmatter field '${field}'`);
+        }
       }
+
+      // Validate tags
+      const tagsArray = parseTags(frontmatter.tags);
+      for (const tag of tagsArray) {
+        if (!ALLOWED_TAGS.includes(tag)) {
+          // Find closest allowed tag
+          let closest = null;
+          let minDistance = Infinity;
+
+          for (const allowed of ALLOWED_TAGS) {
+            const distance = leven(tag, allowed);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closest = allowed;
+            }
+          }
+
+          const suggestion = (minDistance <= 2) ? ` Did you mean '${closest}'?` : '';
+          throw new Error(`Invalid tag '${tag}'.${suggestion} Allowed tags: ${ALLOWED_TAGS.join(', ')}`);
+        }
+      }
+
+      devlogs.push({ file, frontmatter, content });
+
+    } catch (err) {
+      skippedFiles.push({ file, error: err.message });
+      console.warn(`Skipping ${file}: ${err.message}`);
     }
-    
-    return { file, frontmatter, content };
-  });
-  
+  }
+
+  if (devlogs.length === 0) {
+    console.log('No valid devlogs to process.');
+    return;
+  }
+
   // Sort by date for prev/next navigation
   devlogs.sort((a, b) => new Date(a.frontmatter.date) - new Date(b.frontmatter.date));
-  
+
   // Generate HTML for each devlog
   for (let i = 0; i < devlogs.length; i++) {
     const { file, frontmatter, content } = devlogs[i];
     const prevDevlog = i > 0 ? devlogs[i - 1].frontmatter : null;
     const nextDevlog = i < devlogs.length - 1 ? devlogs[i + 1].frontmatter : null;
-    
+
     console.log(`Processing: ${file}`);
-    
     const html = generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog);
     const outputPath = path.join(DOCS_DEVLOGS, `${frontmatter.slug}.html`);
-    
     fs.writeFileSync(outputPath, html);
     console.log(`  Generated: docs/devlogs/${frontmatter.slug}.html`);
   }
-  
+
   // Update listing page
   console.log('');
   updateDevlogsListing(devlogs);
-  
+
   console.log(`\nBuild complete! Generated ${devlogs.length} devlog(s).`);
+
+  // Print skipped files at the end
+  if (skippedFiles.length > 0) {
+    console.log('\nSkipped files due to errors:');
+    skippedFiles.forEach(f => console.log(`- ${f.file}: ${f.error}`));
+  }
 }
+
 
 // Watch mode
 async function watch() {

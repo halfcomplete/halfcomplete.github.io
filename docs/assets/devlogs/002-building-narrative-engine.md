@@ -3,7 +3,7 @@ slug: devlog-002
 title: "Building the Narrative Engine"
 description: "Diving deep into the narrative engine implementation and how Ink integrates with Blazor for interactive storytelling."
 date: 2026-02-14
-tag: Ashborne
+tags: Ashborne
 excerpt: "In this devlog, I explore the narrative engine architecture and show how Ink scripting integrates seamlessly with Blazor to create dynamic, branching storylines."
 ---
 
