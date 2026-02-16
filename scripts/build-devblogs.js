@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * Devlog Build Script
+ * Devblog Build Script
  * 
- * Converts markdown files from docs/assets/devlogs/ into HTML pages in docs/devlogs/
- * and updates the devlogs listing page.
+ * Converts markdown files from docs/assets/devblogs/ into HTML pages in docs/devblogs/
+ * and updates the devblogs listing page.
  * 
  * Usage:
- *   npm run build:devlogs        # Build once
- *   npm run watch:devlogs        # Watch for changes
+ *   npm run build:devblogs        # Build once
+ *   npm run watch:devblogs        # Watch for changes
  */
 
 const fs = require('fs');
@@ -29,20 +29,20 @@ marked.setOptions({
 const ALLOWED_TAGS = ['Ashborne', 'FSE', 'VEX', 'Technical Deep Dive', 'High-level Design', 'Algorithms & Problem Solving', 'Reflection', 'Simulation & Modeling', 'General'];
 
 // Paths
-const SRC_DEVLOGS = path.join(__dirname, '..', 'docs', 'assets', 'devlogs');
-const DOCS_DEVLOGS = path.join(__dirname, '..', 'docs', 'devlogs');
-const DOCS_ASSETS = path.join(__dirname, '..', 'docs', 'assets', 'devlogs');
-const DEVLOGS_LISTING = path.join(__dirname, '..', 'docs', 'devlogs.html');
+const SRC_DEVBLOGS = path.join(__dirname, '..', 'docs', 'assets', 'devblogs');
+const DOCS_DEVBLOGS = path.join(__dirname, '..', 'docs', 'devblogs');
+const DOCS_ASSETS = path.join(__dirname, '..', 'docs', 'assets', 'devblogs');
+const DEVBLOGS_LISTING = path.join(__dirname, '..', 'docs', 'devblogs.html');
 
-// HTML Template for individual devlog pages
-function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
+// HTML Template for individual devblog pages
+function generateDevblogHTML(frontmatter, content, prevDevblog, nextDevblog) {
   const { slug, title, description, date, tags } = frontmatter;
   const formattedDate = formatDate(date);
   const isoDate = formatISODate(date);
   
   // Parse tags (comma and space separated)
   const tagsArray = parseTags(tags);
-  const tagsHTML = tagsArray.map(t => `<span class="devlog-tag">${escapeHTML(t)}</span>`).join(' ');
+  const tagsHTML = tagsArray.map(t => `<span class="devblog-tag">${escapeHTML(t)}</span>`).join(' ');
   
   // Process markdown content and handle images
   const processedContent = processMarkdownContent(content, slug);
@@ -55,24 +55,24 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
   );
 
   // Generate prev/next navigation
-  const prevLink = prevDevlog
-    ? `<a href="${prevDevlog.slug}.html" class="devlog-nav-link prev">
+  const prevLink = prevDevblog
+    ? `<a href="${prevDevblog.slug}.html" class="devblog-nav-link prev">
         <span><i class="fas fa-arrow-left"></i> Previous</span>
-        <span class="devlog-nav-title">${prevDevlog.title}</span>
+        <span class="devblog-nav-title">${prevDevblog.title}</span>
       </a>`
-    : `<a href="#" class="devlog-nav-link prev disabled">
+    : `<a href="#" class="devblog-nav-link prev disabled">
         <span><i class="fas fa-arrow-left"></i> Previous</span>
-        <span class="devlog-nav-title">No previous devlog</span>
+        <span class="devblog-nav-title">No previous devblog</span>
       </a>`;
 
-  const nextLink = nextDevlog
-    ? `<a href="${nextDevlog.slug}.html" class="devlog-nav-link next">
+  const nextLink = nextDevblog
+    ? `<a href="${nextDevblog.slug}.html" class="devblog-nav-link next">
         <span>Next <i class="fas fa-arrow-right"></i></span>
-        <span class="devlog-nav-title">${nextDevlog.title}</span>
+        <span class="devblog-nav-title">${nextDevblog.title}</span>
       </a>`
-    : `<a href="#" class="devlog-nav-link next disabled">
+    : `<a href="#" class="devblog-nav-link next disabled">
         <span>Next <i class="fas fa-arrow-right"></i></span>
-        <span class="devlog-nav-title">Coming soon...</span>
+        <span class="devblog-nav-title">Coming soon...</span>
       </a>`;
 
   return `<!DOCTYPE html>
@@ -154,7 +154,7 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
           <ul class="nav-menu">
             <li><a class="nav-link" href="../index.html#projects">PROJECTS</a></li>
             <li><a class="nav-link" href="../contact.html">CONTACT</a></li>
-            <li><a class="nav-link" href="../devlogs.html">DEVLOGS</a></li>
+            <li><a class="nav-link" href="../devblogs.html">DEVBLOGS</a></li>
             <li>
               <a
                 class="nav-link btn btn-primary"
@@ -182,25 +182,25 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
       </nav>
     </header>
 
-    <!-- Devlog Article -->
-    <article class="devlog-article container">
-      <header class="devlog-article-header">
-        <a href="../devlogs.html" class="back-link">
-          <i class="fas fa-arrow-left"></i> Back to Devlogs
+    <!-- Devblog Article -->
+    <article class="devblog-article container">
+      <header class="devblog-article-header">
+        <a href="../devblogs.html" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to Devblogs
         </a>
-        <div class="devlog-article-meta">
+        <div class="devblog-article-meta">
           ${tagsHTML}
-          <span class="devlog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
+          <span class="devblog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
         </div>
         <h1>${escapeHTML(title)}</h1>
       </header>
 
-      <div class="devlog-article-content">
+      <div class="devblog-article-content">
         ${contentWithLead}
       </div>
 
-      <footer class="devlog-article-footer">
-        <div class="devlog-nav">
+      <footer class="devblog-article-footer">
+        <div class="devblog-nav">
           ${prevLink}
           ${nextLink}
         </div>
@@ -214,8 +214,8 @@ function generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog) {
 `;
 }
 
-// Generate devlog card HTML for listing page
-function generateDevlogCard(frontmatter) {
+// Generate devblog card HTML for listing page
+function generateDevblogCard(frontmatter) {
   const { slug, title, date, tags, excerpt } = frontmatter;
   const formattedDate = formatDate(date);
   const isoDate = formatISODate(date);
@@ -223,21 +223,21 @@ function generateDevlogCard(frontmatter) {
   // Parse tags (comma and space separated)
   const tagsArray = parseTags(tags);
   const tagsDataAttr = tagsArray.join(',');
-  const tagsHTML = tagsArray.map(t => `<span class="devlog-tag">${escapeHTML(t)}</span>`).join(' ');
+  const tagsHTML = tagsArray.map(t => `<span class="devblog-tag">${escapeHTML(t)}</span>`).join(' ');
 
-  return `        <!-- Devlog: ${slug} -->
-        <article class="devlog-card" data-date="${isoDate}" data-tags="${escapeHTML(tagsDataAttr)}" data-title="${escapeHTML(title)}">
-          <div class="devlog-meta">
-            <span class="devlog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
+  return `        <!-- Devblog: ${slug} -->
+        <article class="devblog-card" data-date="${isoDate}" data-tags="${escapeHTML(tagsDataAttr)}" data-title="${escapeHTML(title)}">
+          <div class="devblog-meta">
+            <span class="devblog-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
             ${tagsHTML}
           </div>
-          <h2 class="devlog-title">
-            <a href="devlogs/${slug}.html">${escapeHTML(title)}</a>
+          <h2 class="devblog-title">
+            <a href="devblogs/${slug}.html">${escapeHTML(title)}</a>
           </h2>
-          <p class="devlog-excerpt">
+          <p class="devblog-excerpt">
             ${escapeHTML(excerpt)}
           </p>
-          <a href="devlogs/${slug}.html" class="devlog-read-more">
+          <a href="devblogs/${slug}.html" class="devblog-read-more">
             Read More <i class="fas fa-arrow-right"></i>
           </a>
         </article>`;
@@ -254,10 +254,10 @@ function processMarkdownContent(content, slug) {
       return match;
     }
     
-    // Get source image path (relative to src/devlogs/)
-    const srcImagePath = path.join(SRC_DEVLOGS, imagePath);
+    // Get source image path (relative to src/devblogs/)
+    const srcImagePath = path.join(SRC_DEVBLOGS, imagePath);
     
-    // Create organized destination: assets/devlogs/{slug}/
+    // Create organized destination: assets/devblogs/{slug}/
     const destDir = path.join(DOCS_ASSETS, slug);
     const imageFilename = path.basename(imagePath);
     const destImagePath = path.join(destDir, imageFilename);
@@ -266,42 +266,42 @@ function processMarkdownContent(content, slug) {
     if (fs.existsSync(srcImagePath)) {
       fs.mkdirSync(destDir, { recursive: true });
       fs.copyFileSync(srcImagePath, destImagePath);
-      console.log(`  Copied image: ${imagePath} -> assets/devlogs/${slug}/${imageFilename}`);
+      console.log(`  Copied image: ${imagePath} -> assets/devblogs/${slug}/${imageFilename}`);
     } else {
       console.warn(`  Warning: Image not found: ${srcImagePath}`);
     }
     
     // Return updated markdown with new path
-    return `![${alt}](../assets/devlogs/${slug}/${imageFilename})`;
+    return `![${alt}](../assets/devblogs/${slug}/${imageFilename})`;
   });
 }
 
-// Update the devlogs listing page
-function updateDevlogsListing(devlogs) {
-  let listingHTML = fs.readFileSync(DEVLOGS_LISTING, 'utf-8');
+// Update the devblogs listing page
+function updateDevblogsListing(devblogs) {
+  let listingHTML = fs.readFileSync(DEVBLOGS_LISTING, 'utf-8');
   
-  // Sort devlogs by date (newest first)
-  const sortedDevlogs = [...devlogs].sort((a, b) => 
+  // Sort devblogs by date (newest first)
+  const sortedDevblogs = [...devblogs].sort((a, b) => 
     new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
   );
   
-  // Generate all devlog cards
-  const cardsHTML = sortedDevlogs
-    .map(d => generateDevlogCard(d.frontmatter))
+  // Generate all devblog cards
+  const cardsHTML = sortedDevblogs
+    .map(d => generateDevblogCard(d.frontmatter))
     .join('\n\n');
   
-  // Collect unique tags from all devlogs
-  const allTags = devlogs.flatMap(d => parseTags(d.frontmatter.tags));
+  // Collect unique tags from all devblogs
+  const allTags = devblogs.flatMap(d => parseTags(d.frontmatter.tags));
   const uniqueTags = [...new Set(allTags)].sort();
   const tagOptionsHTML = uniqueTags
     .map(tag => `              <option value="${escapeHTML(tag)}">${escapeHTML(tag)}</option>`)
     .join('\n');
   
-  // Replace devlog list content
-  const listRegex = /<div class="devlog-list" id="devlog-list">[\s\S]*?<\/div>\s*<p class="no-results"/;
+  // Replace devblog list content
+  const listRegex = /<div class="devblog-list" id="devblog-list">[\s\S]*?<\/div>\s*<p class="no-results"/;
   listingHTML = listingHTML.replace(
     listRegex,
-    `<div class="devlog-list" id="devlog-list">\n${cardsHTML}\n      </div>\n\n      <p class="no-results"`
+    `<div class="devblog-list" id="devblog-list">\n${cardsHTML}\n      </div>\n\n      <p class="no-results"`
   );
   
   // Update tag filter options
@@ -314,8 +314,8 @@ ${tagOptionsHTML}
             </select>`
   );
   
-  fs.writeFileSync(DEVLOGS_LISTING, listingHTML);
-  console.log('Updated devlogs.html listing page');
+  fs.writeFileSync(DEVBLOGS_LISTING, listingHTML);
+  console.log('Updated devblogs.html listing page');
 }
 
 // Helper functions
@@ -350,27 +350,27 @@ function parseTags(tagsStr) {
 
 // Main build function
 async function build() {
-  console.log('Building devlogs...\n');
+  console.log('Building devblogs...\n');
 
   // Ensure output directories exist
-  fs.mkdirSync(DOCS_DEVLOGS, { recursive: true });
+  fs.mkdirSync(DOCS_DEVBLOGS, { recursive: true });
   fs.mkdirSync(DOCS_ASSETS, { recursive: true });
 
   // Find all markdown files
-  const mdFiles = await glob('*.md', { cwd: SRC_DEVLOGS });
+  const mdFiles = await glob('*.md', { cwd: SRC_DEVBLOGS });
 
   if (mdFiles.length === 0) {
-    console.log('No markdown files found in src/devlogs/');
+    console.log('No markdown files found in src/devblogs/');
     return;
   }
 
-  const devlogs = [];
+  const devblogs = [];
   const skippedFiles = [];
 
-  // Parse all devlogs
+  // Parse all devblogs
   for (const file of mdFiles) {
     try {
-      const filePath = path.join(SRC_DEVLOGS, file);
+      const filePath = path.join(SRC_DEVBLOGS, file);
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const { data: frontmatter, content } = matter(fileContent);
 
@@ -403,7 +403,7 @@ async function build() {
         }
       }
 
-      devlogs.push({ file, frontmatter, content });
+      devblogs.push({ file, frontmatter, content });
 
     } catch (err) {
       skippedFiles.push({ file, error: err.message });
@@ -411,32 +411,32 @@ async function build() {
     }
   }
 
-  if (devlogs.length === 0) {
-    console.log('No valid devlogs to process.');
+  if (devblogs.length === 0) {
+    console.log('No valid devblogs to process.');
     return;
   }
 
   // Sort by date for prev/next navigation
-  devlogs.sort((a, b) => new Date(a.frontmatter.date) - new Date(b.frontmatter.date));
+  devblogs.sort((a, b) => new Date(a.frontmatter.date) - new Date(b.frontmatter.date));
 
-  // Generate HTML for each devlog
-  for (let i = 0; i < devlogs.length; i++) {
-    const { file, frontmatter, content } = devlogs[i];
-    const prevDevlog = i > 0 ? devlogs[i - 1].frontmatter : null;
-    const nextDevlog = i < devlogs.length - 1 ? devlogs[i + 1].frontmatter : null;
+  // Generate HTML for each devblog
+  for (let i = 0; i < devblogs.length; i++) {
+    const { file, frontmatter, content } = devblogs[i];
+    const prevDevblog = i > 0 ? devblogs[i - 1].frontmatter : null;
+    const nextDevblog = i < devblogs.length - 1 ? devblogs[i + 1].frontmatter : null;
 
     console.log(`Processing: ${file}`);
-    const html = generateDevlogHTML(frontmatter, content, prevDevlog, nextDevlog);
-    const outputPath = path.join(DOCS_DEVLOGS, `${frontmatter.slug}.html`);
+    const html = generateDevblogHTML(frontmatter, content, prevDevblog, nextDevblog);
+    const outputPath = path.join(DOCS_DEVBLOGS, `${frontmatter.slug}.html`);
     fs.writeFileSync(outputPath, html);
-    console.log(`  Generated: docs/devlogs/${frontmatter.slug}.html`);
+    console.log(`  Generated: docs/devblogs/${frontmatter.slug}.html`);
   }
 
   // Update listing page
   console.log('');
-  updateDevlogsListing(devlogs);
+  updateDevblogsListing(devblogs);
 
-  console.log(`\nBuild complete! Generated ${devlogs.length} devlog(s).`);
+  console.log(`\nBuild complete! Generated ${devblogs.length} devblog(s).`);
 
   // Print skipped files at the end
   if (skippedFiles.length > 0) {
@@ -450,13 +450,13 @@ async function build() {
 async function watch() {
   const chokidar = require('chokidar');
   
-  console.log('Watching for changes in src/devlogs/...\n');
+  console.log('Watching for changes in src/devblogs/...\n');
   
   // Initial build
   await build();
   
   // Watch for changes
-  const watcher = chokidar.watch(SRC_DEVLOGS, {
+  const watcher = chokidar.watch(SRC_DEVBLOGS, {
     ignored: /(^|[\/\\])\../,
     persistent: true
   });

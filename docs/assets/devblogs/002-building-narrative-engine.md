@@ -1,10 +1,10 @@
 ---
-slug: devlog-002
+slug: devblog-002
 title: "Building the Narrative Engine"
 description: "Diving deep into the narrative engine implementation and how Ink integrates with Blazor for interactive storytelling."
 date: 2026-02-14
 tags: Ashborne
-excerpt: "In this devlog, I explore the narrative engine architecture and show how Ink scripting integrates seamlessly with Blazor to create dynamic, branching storylines."
+excerpt: "In this devblog, I explore the narrative engine architecture and show how Ink scripting integrates seamlessly with Blazor to create dynamic, branching storylines."
 ---
 
 After setting up the foundation, it's time to tackle the heart of Ashborne: the narrative engine.
@@ -54,7 +54,7 @@ public class GameState
 
 ## Next Steps
 
-In the next devlog, I'll cover the UI components and how player choices are visualized. Stay tuned!
+In the next devblog, I'll cover the UI components and how player choices are visualized. Stay tuned!
 
 ---
 

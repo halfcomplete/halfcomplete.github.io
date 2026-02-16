@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Primary Meta Tags -->
-    <title>Getting Started with Ashborne - Setting Up the Foundation | halfcomplete</title>
-    <meta name="title" content="Getting Started with Ashborne - Setting Up the Foundation | halfcomplete" />
+    <title>Building the Narrative Engine | halfcomplete</title>
+    <meta name="title" content="Building the Narrative Engine | halfcomplete" />
     <meta
       name="description"
-      content="Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup, the tech stack decisions, and the core architecture."
+      content="Diving deep into the narrative engine implementation and how Ink integrates with Blazor for interactive storytelling."
     />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Getting Started with Ashborne - Setting Up the Foundation | halfcomplete" />
+    <meta property="og:title" content="Building the Narrative Engine | halfcomplete" />
     <meta
       property="og:description"
-      content="Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup, the tech stack decisions, and the core architecture."
+      content="Diving deep into the narrative engine implementation and how Ink integrates with Blazor for interactive storytelling."
     />
 
     <!-- Link -->
@@ -77,7 +77,7 @@
           <ul class="nav-menu">
             <li><a class="nav-link" href="../index.html#projects">PROJECTS</a></li>
             <li><a class="nav-link" href="../contact.html">CONTACT</a></li>
-            <li><a class="nav-link" href="../devlogs.html">DEVLOGS</a></li>
+            <li><a class="nav-link" href="../devblogs.html">DEVBLOGS</a></li>
             <li>
               <a
                 class="nav-link btn btn-primary"
@@ -105,56 +105,87 @@
       </nav>
     </header>
 
-    <!-- Devlog Article -->
-    <article class="devlog-article container">
-      <header class="devlog-article-header">
-        <a href="../devlogs.html" class="back-link">
-          <i class="fas fa-arrow-left"></i> Back to Devlogs
+    <!-- Devblog Article -->
+    <article class="devblog-article container">
+      <header class="devblog-article-header">
+        <a href="../devblogs.html" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to Devblogs
         </a>
-        <div class="devlog-article-meta">
-          <span class="devlog-tag">Ashborne</span> <span class="devlog-tag">Other</span>
-          <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 7, 2026</span>
+        <div class="devblog-article-meta">
+          <span class="devblog-tag">Ashborne</span>
+          <span class="devblog-date"><i class="far fa-calendar-alt"></i> February 14, 2026</span>
         </div>
-        <h1>Getting Started with Ashborne - Setting Up the Foundation</h1>
+        <h1>Building the Narrative Engine</h1>
       </header>
 
-      <div class="devlog-article-content">
-        <p class="lead">Today marks the beginning of the Ashborne project. This interactive narrative experience has been on my mind for months, and I&#39;m finally ready to bring it to life.</p>
-<h2>The Vision</h2>
-<p>Ashborne is an interactive fiction project built using C#, Blazor, and the Ink scripting language. The goal is to create an immersive narrative experience that combines traditional storytelling with dynamic, player-driven choices.</p>
-<h2>Tech Stack Decisions</h2>
-<p>Choosing the right tools is crucial for any project. Here&#39;s what I&#39;m working with:</p>
-<ul>
-<li><strong>C#</strong> - The backbone of the application logic</li>
-<li><strong>Blazor</strong> - For building the interactive web UI</li>
-<li><strong>Ink</strong> - A powerful narrative scripting language by Inkle</li>
-</ul>
-<h2>Initial Setup</h2>
-<p>The first step was setting up the project structure. I wanted something modular and easy to maintain as the project grows. Here&#39;s a quick overview of the architecture:</p>
-<pre><code>Ashborne/
-├── src/
-│   ├── Core/
-│   ├── Narrative/
-│   └── UI/
-├── stories/
-└── tests/
+      <div class="devblog-article-content">
+        <p class="lead">After setting up the foundation, it&#39;s time to tackle the heart of Ashborne: the narrative engine.</p>
+<h2>Architecture Overview</h2>
+<p>The narrative engine is designed with modularity in mind. Here&#39;s how the components interact:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Story Manager</td>
+<td>Loads and manages Ink stories</td>
+</tr>
+<tr>
+<td>State Tracker</td>
+<td>Persists player choices and progress</td>
+</tr>
+<tr>
+<td>Renderer</td>
+<td>Displays narrative text in the UI</td>
+</tr>
+<tr>
+<td>Choice Handler</td>
+<td>Processes player decisions</td>
+</tr>
+</tbody></table>
+<h2>Ink Integration</h2>
+<p>Ink is a powerful scripting language designed for interactive narratives. Here&#39;s a simple example:</p>
+<pre><code class="language-ink">=== start ===
+You stand at the crossroads.
+* [Go left] -&gt; left_path
+* [Go right] -&gt; right_path
+
+=== left_path ===
+The forest grows darker...
+-&gt; END
+
+=== right_path ===
+Sunlight filters through the trees...
+-&gt; END
 </code></pre>
-<h2>What&#39;s Next</h2>
-<p>In the next devlog, I&#39;ll dive into the narrative engine implementation and how Ink integrates with the Blazor frontend. Stay tuned!</p>
+<h2>State Management</h2>
+<p>One of the trickiest parts was managing state across sessions. I implemented a simple JSON-based save system:</p>
+<pre><code class="language-csharp">public class GameState
+{
+    public string CurrentKnot { get; set; }
+    public Dictionary&lt;string, object&gt; Variables { get; set; }
+    public List&lt;string&gt; VisitedNodes { get; set; }
+}
+</code></pre>
+<h2>Next Steps</h2>
+<p>In the next devblog, I&#39;ll cover the UI components and how player choices are visualized. Stay tuned!</p>
 <hr>
-<p>Thanks for reading! If you have questions or want to follow along with the project, feel free to reach out or check out the repository.</p>
+<p>Thanks for reading! Feel free to reach out with questions or feedback.</p>
 
       </div>
 
-      <footer class="devlog-article-footer">
-        <div class="devlog-nav">
-          <a href="#" class="devlog-nav-link prev disabled">
+      <footer class="devblog-article-footer">
+        <div class="devblog-nav">
+          <a href="#" class="devblog-nav-link prev disabled">
         <span><i class="fas fa-arrow-left"></i> Previous</span>
-        <span class="devlog-nav-title">No previous devlog</span>
+        <span class="devblog-nav-title">No previous devblog</span>
       </a>
-          <a href="devlog-002.html" class="devlog-nav-link next">
+          <a href="#" class="devblog-nav-link next disabled">
         <span>Next <i class="fas fa-arrow-right"></i></span>
-        <span class="devlog-nav-title">Building the Narrative Engine</span>
+        <span class="devblog-nav-title">Coming soon...</span>
       </a>
         </div>
       </footer>

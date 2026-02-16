@@ -79,9 +79,9 @@ updateLogo();
   // Determine asset path prefix based on page depth
   const path = window.location.pathname;
   const depth = (path.match(/\//g) || []).length;
-  // Pages in subdirectories (e.g. /devlogs/devlog-001.html) need "../"
+  // Pages in subdirectories (e.g. /devblogs/devblog-001.html) need "../"
   // Root-level pages use "./"
-  const prefix = path.includes("/devlogs/") ? ".." : ".";
+  const prefix = path.includes("/devblogs/") ? ".." : ".";
 
   footer.innerHTML = `
     <div class="container">
@@ -101,28 +101,28 @@ updateLogo();
 })();
 
 // ================================
-// Devlog Search, Filter, and Sort
+// Devblog Search, Filter, and Sort
 // ================================
 
-const devlogList = document.getElementById('devlog-list');
-const searchInput = document.getElementById('devlog-search-input');
+const devblogList = document.getElementById('devblog-list');
+const searchInput = document.getElementById('devblog-search-input');
 const tagFilter = document.getElementById('tag-filter');
 const sortSelect = document.getElementById('sort-select');
 const noResults = document.getElementById('no-results');
 
-if (devlogList && searchInput && tagFilter && sortSelect) {
-  const devlogCards = Array.from(devlogList.querySelectorAll('.devlog-card'));
+if (devblogList && searchInput && tagFilter && sortSelect) {
+  const devblogCards = Array.from(devblogList.querySelectorAll('.devblog-card'));
 
-  function filterAndSortDevlogs() {
+  function filterAndSortDevblogs() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     const selectedTag = tagFilter.value;
     const sortOption = sortSelect.value;
 
     // Filter cards
-    let visibleCards = devlogCards.filter(card => {
+    let visibleCards = devblogCards.filter(card => {
       const title = card.dataset.title.toLowerCase();
       const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-      const excerpt = card.querySelector('.devlog-excerpt').textContent.toLowerCase();
+      const excerpt = card.querySelector('.devblog-excerpt').textContent.toLowerCase();
 
       const matchesSearch = searchTerm === '' || 
         title.includes(searchTerm) || 
@@ -145,7 +145,7 @@ if (devlogList && searchInput && tagFilter && sortSelect) {
     });
 
     // Update visibility and order
-    devlogCards.forEach(card => {
+    devblogCards.forEach(card => {
       card.classList.add('hidden');
     });
 
@@ -167,11 +167,11 @@ if (devlogList && searchInput && tagFilter && sortSelect) {
   }
 
   // Add event listeners
-  searchInput.addEventListener('input', filterAndSortDevlogs);
-  tagFilter.addEventListener('change', filterAndSortDevlogs);
-  sortSelect.addEventListener('change', filterAndSortDevlogs);
+  searchInput.addEventListener('input', filterAndSortDevblogs);
+  tagFilter.addEventListener('change', filterAndSortDevblogs);
+  sortSelect.addEventListener('change', filterAndSortDevblogs);
 
-  // Set devlog-list to use flexbox for ordering
-  devlogList.style.display = 'flex';
-  devlogList.style.flexDirection = 'column';
+  // Set devblog-list to use flexbox for ordering
+  devblogList.style.display = 'flex';
+  devblogList.style.flexDirection = 'column';
 }

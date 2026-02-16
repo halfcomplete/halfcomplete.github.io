@@ -1,10 +1,10 @@
 {
   "name": "halfcomplete-portfolio",
   "version": "1.0.0",
-  "description": "halfcomplete portfolio site with automated devlog generation",
+  "description": "halfcomplete portfolio site with automated devblog generation",
   "scripts": {
-    "build:devlogs": "node scripts/build-devlogs.js",
-    "watch:devlogs": "node scripts/build-devlogs.js --watch"
+    "build:devblogs": "node scripts/build-devblogs.js",
+    "watch:devblogs": "node scripts/build-devblogs.js --watch"
   },
   "devDependencies": {
     "chokidar": "^3.5.3",

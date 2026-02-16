@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Primary Meta Tags -->
-    <title>Devlogs | halfcomplete</title>
-    <meta name="title" content="Devlogs | halfcomplete" />
+    <title>Devblogs | halfcomplete</title>
+    <meta name="title" content="Devblogs | halfcomplete" />
     <meta
       name="description"
       content="Read through my development logs and journey building various projects."
@@ -14,7 +14,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Devlogs | halfcomplete" />
+    <meta property="og:title" content="Devblogs | halfcomplete" />
     <meta
       property="og:description"
       content="Read through my development logs and journey building various projects."
@@ -77,7 +77,7 @@
           <ul class="nav-menu">
             <li><a class="nav-link" href="index.html#projects">PROJECTS</a></li>
             <li><a class="nav-link" href="contact.html">CONTACT</a></li>
-            <li><a class="nav-link" href="devlogs.html">DEVLOGS</a></li>
+            <li><a class="nav-link" href="devblogs.html">DEVBLOGS</a></li>
             <li>
               <a
                 class="nav-link btn btn-primary"
@@ -104,8 +104,8 @@
         </div>
       </nav>
 
-      <section class="header-container devlogs-header">
-        <h1>Devlogs</h1>
+      <section class="header-container devblogs-header">
+        <h1>Devblogs</h1>
         <div class="content-text">
           <p>
             Follow along with my development journey. Here you'll find updates,
@@ -115,30 +115,22 @@
       </section>
     </header>
 
-    <!-- Devlogs List -->
-    <section id="devlogs" class="devlogs-container container">
+    <!-- Devblogs List -->
+    <section id="devblogs" class="devblogs-container container">
       <div class="division"></div>
 
       <!-- Search, Filter, Sort Controls -->
-      <div class="devlog-controls">
-        <div class="devlog-search">
+      <div class="devblog-controls">
+        <div class="devblog-search">
           <i class="fas fa-search"></i>
-          <input type="text" id="devlog-search-input" placeholder="Search devlogs..." />
+          <input type="text" id="devblog-search-input" placeholder="Search devblogs..." />
         </div>
-        <div class="devlog-filters">
+        <div class="devblog-filters">
           <div class="filter-group">
             <label for="tag-filter">Filter by tag:</label>
             <select id="tag-filter">
               <option value="all">All Tags</option>
               <option value="Ashborne">Ashborne</option>
-              <option value="FSE">FSE</option>
-              <option value="VEX">VEX</option>
-              <option value="High-level Design">High-level Design</option>
-              <option value="Technical Deep Dive">Technical Deep Dive</option>
-              <option value="Algorithms & Problem Solving">Algorithms & Problem Solving</option>
-              <option value="Simulation & Modeling">Simulation & Modeling</option>
-              <option value="Reflection">Reflection</option>
-              <option value="Other">Other</option>
             </select>
           </div>
           <div class="filter-group">
@@ -152,43 +144,26 @@
         </div>
       </div>
 
-      <div class="devlog-list" id="devlog-list">
-        <!-- Devlog: devlog-002 -->
-        <article class="devlog-card" data-date="2026-02-14" data-tags="Ashborne" data-title="Building the Narrative Engine">
-          <div class="devlog-meta">
-            <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 14, 2026</span>
-            <span class="devlog-tag">Ashborne</span>
+      <div class="devblog-list" id="devblog-list">
+        <!-- Devblog: devblog-002 -->
+        <article class="devblog-card" data-date="2026-02-14" data-tags="Ashborne" data-title="Building the Narrative Engine">
+          <div class="devblog-meta">
+            <span class="devblog-date"><i class="far fa-calendar-alt"></i> February 14, 2026</span>
+            <span class="devblog-tag">Ashborne</span>
           </div>
-          <h2 class="devlog-title">
-            <a href="devlogs/devlog-002.html">Building the Narrative Engine</a>
+          <h2 class="devblog-title">
+            <a href="devblogs/devblog-002.html">Building the Narrative Engine</a>
           </h2>
-          <p class="devlog-excerpt">
-            In this devlog, I explore the narrative engine architecture and show how Ink scripting integrates seamlessly with Blazor to create dynamic, branching storylines.
+          <p class="devblog-excerpt">
+            In this devblog, I explore the narrative engine architecture and show how Ink scripting integrates seamlessly with Blazor to create dynamic, branching storylines.
           </p>
-          <a href="devlogs/devlog-002.html" class="devlog-read-more">
-            Read More <i class="fas fa-arrow-right"></i>
-          </a>
-        </article>
-
-        <!-- Devlog: devlog-001 -->
-        <article class="devlog-card" data-date="2026-02-07" data-tags="Ashborne,Other" data-title="Getting Started with Ashborne - Setting Up the Foundation">
-          <div class="devlog-meta">
-            <span class="devlog-date"><i class="far fa-calendar-alt"></i> February 7, 2026</span>
-            <span class="devlog-tag">Ashborne</span> <span class="devlog-tag">Other</span>
-          </div>
-          <h2 class="devlog-title">
-            <a href="devlogs/devlog-001.html">Getting Started with Ashborne - Setting Up the Foundation</a>
-          </h2>
-          <p class="devlog-excerpt">
-            Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup, the tech stack decisions, and the core architecture that will power this interactive narrative experience.
-          </p>
-          <a href="devlogs/devlog-001.html" class="devlog-read-more">
+          <a href="devblogs/devblog-002.html" class="devblog-read-more">
             Read More <i class="fas fa-arrow-right"></i>
           </a>
         </article>
       </div>
 
-      <p class="no-results" id="no-results" style="display: none;">No devlogs found matching your criteria.</p>
+      <p class="no-results" id="no-results" style="display: none;">No devblogs found matching your criteria.</p>
 
     </section>
 
