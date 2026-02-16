@@ -1,9 +1,9 @@
 ---
 slug: devlog-001
 title: "Getting Started with Ashborne - Setting Up the Foundation"
-description: "Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup, the tech stack decisions, and the core architecture."
+description: ""
 date: 2026-02-07
-tags: Ashborne, Other
+tags: Ashborne, General
 excerpt: "Today marks the beginning of the Ashborne project. In this devlog, I cover the initial setup, the tech stack decisions, and the core architecture that will power this interactive narrative experience."
 ---
 
