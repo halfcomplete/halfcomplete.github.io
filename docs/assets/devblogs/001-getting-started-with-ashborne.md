@@ -7,7 +7,7 @@ tags: Ashborne, General, Reflection
 excerpt: "In this devblog, I cover the basics of Ashborne, what the project looks like, and its vision, purpose and tech stack."
 ---
 
-I've been working on ***Ashborne*** - a narrative-based text RPG for 8 months now - and it's time to share what I've done, my thought process in that time, and where to go from here.
+I've been working on ***Ashborne*** - a narrative-based text RPG - for 8 months now and it's time to share what I've done, my thought process in that time, and where to go from here.
 
 ## The Vision
 
