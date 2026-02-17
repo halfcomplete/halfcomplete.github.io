@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Primary Meta Tags -->
-    <title>Getting Started with Ashborne - Setting Up the Foundation | halfcomplete</title>
-    <meta name="title" content="Getting Started with Ashborne - Setting Up the Foundation | halfcomplete" />
+    <title>Beginning Ashborne - A Quick Overview | halfcomplete</title>
+    <meta name="title" content="Beginning Ashborne - A Quick Overview | halfcomplete" />
     <meta
       name="description"
-      content="Today marks the beginning of the Ashborne project. In this devblog, I cover the initial setup, the tech stack decisions, and the core architecture."
+      content="An outline of Ashborne's vision, purpose and tech stack."
     />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Getting Started with Ashborne - Setting Up the Foundation | halfcomplete" />
+    <meta property="og:title" content="Beginning Ashborne - A Quick Overview | halfcomplete" />
     <meta
       property="og:description"
-      content="Today marks the beginning of the Ashborne project. In this devblog, I cover the initial setup, the tech stack decisions, and the core architecture."
+      content="An outline of Ashborne's vision, purpose and tech stack."
     />
 
     <!-- Link -->
@@ -112,49 +112,72 @@
           <i class="fas fa-arrow-left"></i> Back to Devblogs
         </a>
         <div class="devblog-article-meta">
-          <span class="devblog-tag">Ashborne</span> <span class="devblog-tag">Other</span>
-          <span class="devblog-date"><i class="far fa-calendar-alt"></i> February 7, 2026</span>
+          <span class="devblog-tag">Ashborne</span> <span class="devblog-tag">General</span> <span class="devblog-tag">Reflection</span>
+          <span class="devblog-date"><i class="far fa-calendar-alt"></i> February 17, 2026</span>
         </div>
-        <h1>Getting Started with Ashborne - Setting Up the Foundation</h1>
+        <h1>Beginning Ashborne - A Quick Overview</h1>
       </header>
 
       <div class="devblog-article-content">
-        <p class="lead">Today marks the beginning of the Ashborne project. This interactive narrative experience has been on my mind for months, and I&#39;m finally ready to bring it to life.</p>
+        <p class="lead">I&#39;ve been working on <em><strong>Ashborne</strong></em> - a narrative-based text RPG for 8 months now - and it&#39;s time to share what I&#39;ve done, my thought process in that time, and where to go from here.</p>
 <h2>The Vision</h2>
-<p>Ashborne is an interactive fiction project built using C#, Blazor, and the Ink scripting language. The goal is to create an immersive narrative experience that combines traditional storytelling with dynamic, player-driven choices.</p>
+<p><em>Ashborne</em> is an interactive and immersive fiction text RPG playable on the browser that combines traditional storytelling with dynamic, player-driven choices through new and innovative technologies and systems.</p>
+<p>For example (sneak peak into future devblogs!): the game now revolves around Masks, an abstraction of identity into physical objects that change how your character views the world and how others view your character through modular behaviour adaptation.</p>
+<p>The project was originally built with no emotional or storytelling aspect considered. However, studying Shakespeare&#39;s works in English class led me to adapt the experience and ultimately enter it into <em>Young ICT Explorers</em> (YICTE).</p>
+<p>Ashborne attempts to change how players view the world through an emphasis of three intertwined &quot;pillars&quot;:</p>
+<ol>
+<li><strong>The Cost of Power</strong> - power and control is never free. It comes at a cost to your conscience and identity.</li>
+<li><strong>The Cycle of Violence</strong> - violence and brutality is all throughout history, and history repeats itself.</li>
+<li><strong>The Question of Identity</strong> - what does it mean to be &quot;yourself&quot;? And when you make the drastic decisions you&#39;ll eventually be faced with, who do you become?</li>
+</ol>
 <h2>Tech Stack Decisions</h2>
-<p>Choosing the right tools is crucial for any project. Here&#39;s what I&#39;m working with:</p>
+<p>Choosing the right tools is crucial for any project, and Ashborne is no exception! Here&#39;s what I&#39;m working with:</p>
 <ul>
-<li><strong>C#</strong> - The backbone of the application logic</li>
-<li><strong>Blazor</strong> - For building the interactive web UI</li>
-<li><strong>Ink</strong> - A powerful narrative scripting language by Inkle</li>
+<li><strong>C#</strong> - The backbone of the game logic. I chose C# as it&#39;s my most comfortable language and comes with plenty of web and game development support while still remaining performant and clean.</li>
+<li><strong>Blazor</strong> - For building the interactive web UI. It is the most modern solution for C# web development and allows for direct running of C# code within the browser.</li>
+<li><strong><a href="https://www.inklestudios.com/ink/">Ink</a></strong> - A powerful narrative scripting language by Inkle. Used in every single dialogue interaction in the game.</li>
+<li><strong>Github Pages</strong> - My current method of hosting Ashborne online for free</li>
 </ul>
-<h2>Initial Setup</h2>
-<p>The first step was setting up the project structure. I wanted something modular and easy to maintain as the project grows. Here&#39;s a quick overview of the architecture:</p>
-<pre><code>Ashborne/
-├── src/
-│   ├── Core/
-│   ├── Narrative/
-│   └── UI/
-├── stories/
-└── tests/
-</code></pre>
-<h2>What&#39;s Next</h2>
-<p>In the next devblog, I&#39;ll dive into the narrative engine implementation and how Ink integrates with the Blazor frontend. Stay tuned!</p>
+<p>You may be wondering - why on the browser? Why not use something like Unity? Later, if the project grows to a much bigger scope (despite it already being quite large now), I may consider porting over to a proper game engine such as Unity. However, as of now the browser is perfect. It provides:</p>
+<ul>
+<li>Ease of development setup,</li>
+<li>Insane accessibility across most modern devices,</li>
+<li>And flexibility in what I can code</li>
+</ul>
+<p>The characteristics of a text-first system make a lightweight web architecture more appropriate.</p>
+<h2>My own goals for this project</h2>
+<p>Here&#39;s where the starting quote becomes most relevant. I&#39;m still quite young and learning - so what do I want to get out of this project the most?<br>It is not:</p>
+<ul>
+<li>To create the perfect narrative driven text RPG</li>
+<li>Or to change the entire world forever</li>
+</ul>
+<p>However, I wouldn&#39;t complain if either actually do happen. :)<br><br>My personal goals for the project include, but are not limited to:</p>
+<ul>
+<li>Developing my software engineering and design skills heavily</li>
+<li>Changing at least one person&#39;s life or view on the world</li>
+<li>Challenging myself to start and finish a large, complex, multi-year project</li>
+<li>Documenting the entire process in devblogs (while I didn&#39;t devblog the first 8 months, after they catch up, devblogs will be released as the development occurs)</li>
+<li>Documenting the entirety (or most) of the codebase as well as open-sourcing it for others to possibly reuse systems</li>
+</ul>
+<p>If I can complete all those goals within the next 3 years-ish, I would be one very happy dude.</p>
+<h2>So. What&#39;s Next?</h2>
+<p>Of course, development will continue at the (breakneck!) pace that its been going at since the start! I&#39;ll also be posting new devblogs <em>ideally</em> every time I have something new to say (max a week in-between).</p>
+<p>Some of these devblogs will be about Ashborne, some will be about a new simulation project in the planning stages, and some about VEX Robotics (although you probably won&#39;t see any of the last for a while).</p>
+<p>Looking closer to the near future, the next devblog will outline the core engine structure, including the separation between the core logic and platform-specific ports, and how narrative state propagates through the system. Stay tuned!</p>
 <hr>
-<p>Thanks for reading! If you have questions or want to follow along with the project, feel free to reach out or check out the repository.</p>
+<p><em>Thanks for reading! If you have questions or want to follow along with the project, feel free to reach out or check out the repository <a href="https://github.com/halfcomplete/AshborneCode">here</a>.</em></p>
 
       </div>
 
       <footer class="devblog-article-footer">
         <div class="devblog-nav">
-          <a href="#" class="devblog-nav-link prev disabled">
+          <a href="devblog-002.html" class="devblog-nav-link prev">
         <span><i class="fas fa-arrow-left"></i> Previous</span>
-        <span class="devblog-nav-title">No previous devblog</span>
-      </a>
-          <a href="devblog-002.html" class="devblog-nav-link next">
-        <span>Next <i class="fas fa-arrow-right"></i></span>
         <span class="devblog-nav-title">Building the Narrative Engine</span>
+      </a>
+          <a href="#" class="devblog-nav-link next disabled">
+        <span>Next <i class="fas fa-arrow-right"></i></span>
+        <span class="devblog-nav-title">Coming soon...</span>
       </a>
         </div>
       </footer>

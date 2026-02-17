@@ -2,7 +2,7 @@
 slug: devblog-001
 title: "Beginning Ashborne - A Quick Overview"
 description: "An outline of Ashborne's vision, purpose and tech stack."
-date: 2026-02-16
+date: 2026-02-17
 tags: Ashborne, General, Reflection
 excerpt: "In this devblog, I cover the basics of Ashborne, what the project looks like, and its vision, purpose and tech stack."
 ---
