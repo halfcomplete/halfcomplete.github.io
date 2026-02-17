@@ -26,7 +26,7 @@ marked.setOptions({
 });
 
 // Predefined allowed tags
-const ALLOWED_TAGS = ['Ashborne', 'FSE', 'VEX', 'Technical Deep Dive', 'High-level Design', 'Algorithms & Problem Solving', 'Reflection', 'Simulation & Modeling', 'General'];
+const ALLOWED_TAGS = ['Ashborne', 'FSE', 'VEX', 'Technical Deep Dive', 'High-level Design', 'Algorithms & Problem Solving', 'Reflection', 'Simulation & Modeling', 'General / Project Updates'];
 
 // Paths
 const SRC_DEVBLOGS = path.join(__dirname, '..', 'docs', 'assets', 'devblogs');
